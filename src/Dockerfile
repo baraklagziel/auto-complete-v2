@@ -1,10 +1,4 @@
-FROM ubuntu:latest
-LABEL authors="baraklagziel"
-
-ENTRYPOINT ["top", "-b"]
-
-#FROM 313147870
-#ARG JAR_VERSION
-#USER ${USER}
-#COPY target/auto-complete}.jar app.jar
-#ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:17-oracle
+ARG JAR_FILE=target/auto-complete-v2-0.0.1-SNAPSHOT.jar
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
