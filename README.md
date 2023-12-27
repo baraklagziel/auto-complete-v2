@@ -22,12 +22,63 @@ To set up the auto-complete service, follow these steps:
 3. Use Maven to build the project: `mvn clean install`
 4. Run the application: `java -jar target/auto-complete-v2-0.0.1-SNAPSHOT.jar`
 
-## Usage
 
-Once the application is running, it exposes an endpoint for auto-complete suggestions:
+## Running with Docker
 
+You can run this Spring Boot application in a Docker container. Follow these steps:
 
-Replace `{prefix}` with the term you want suggestions for.
+1. Build the Docker image:
+
+   ```bash
+   docker build -t auto-complete -f src/Dockerfile . --no-cache
+2. ```bash 
+   docker run -p 9093:8080 auto-complete
+3. ```bash
+   docker stop $(docker ps -q --filter ancestor=autocomplete-v2)
+
+- **Note: Make sure you have Docker installed on your machine to run the application using Docker.**
+
+Feel free to customize the instructions to fit your project's specific needs.
+# AutoComplete API
+
+The AutoComplete API provides a set of endpoints for creating, retrieving, and deleting names, especially focusing on auto-completion functionalities. This document outlines the available endpoints and their usage.
+ 
+## API Endpoints
+
+### 1. Get Auto-complete Suggestions
+
+- **Endpoint**: `GET /v1/autocomplete`
+- **Description**: Retrieves a list of auto-completion suggestions based on the given prefix. Returns up to 1000 names.
+- **Parameters**:
+   - `prefix`: The prefix string to search for.
+
+### 2. Create a New Name
+
+- **Endpoint**: `POST /v1/names`
+- **Description**: Creates a new name in the system.
+- **Body**: A plain text string with the name to be saved.
+
+### 3. Delete Name by Exact Match
+
+- **Endpoint**: `DELETE /v1/names/by-name/{name}`
+- **Description**: Deletes a name based on an exact match.
+- **Path Variable**:
+   - `name`: The exact name to delete.
+
+### 4. Delete Name by ID
+
+- **Endpoint**: `DELETE /v1/names/{id}`
+- **Description**: Deletes a name based on its unique identifier.
+- **Path Variable**:
+   - `id`: The unique identifier of the name to delete.
+
+### 5. Delete Names by Prefix
+
+- **Endpoint**: `DELETE /v1/names/prefix/{prefix}`
+- **Description**: Deletes names that start with the specified prefix.
+- **Path Variable**:
+   - `prefix`: The prefix of the names to delete.
+
 
 ## Contributing
 

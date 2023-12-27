@@ -1,4 +1,4 @@
-package com.autocomplete.autocompletev2.model;
+package com.autocomplete.autocompletev2.utils;
 
 import org.springframework.stereotype.Component;
 
@@ -15,8 +15,8 @@ public class Trie {
     public void insert(String word) {
         TrieNode current = root;
         word = word.toLowerCase(); // Convert word to lowercase
-        for (char l : word.toCharArray()) {
-            current = current.children.computeIfAbsent(l, c -> new TrieNode());
+        for (char letter : word.toCharArray()) {
+            current = current.children.computeIfAbsent(letter, c -> new TrieNode());
         }
         current.isWordEnd = true;
     }

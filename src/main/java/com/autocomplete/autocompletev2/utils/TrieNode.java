@@ -1,4 +1,4 @@
-package com.autocomplete.autocompletev2.model;
+package com.autocomplete.autocompletev2.utils;
 
 import java.util.HashMap;
 import java.util.Map;
